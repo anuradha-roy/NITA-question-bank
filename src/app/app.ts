@@ -1,8 +1,11 @@
 import express, { type Request, type Response } from "express";
 import { executeQuery, testConnection } from "../database/connectDB";
 import { apiRoute } from "../routes/apiRouter";
+const cors = require('cors');
 
 const app = express();
+
+app.use(cors());
 
 // use a api route
 app.use("/api", apiRoute);

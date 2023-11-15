@@ -1,0 +1,25 @@
+.card {
+    width: 100%;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.download-button, .view-button {
+    display: inline-block;
+    margin: 5px;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.download-button {
+    background-color: #4CAF50; /* Green */
+}
+
+.view-button {
+    background-color: #008CBA; /* Blue */
+}

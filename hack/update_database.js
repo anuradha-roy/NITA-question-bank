@@ -4,8 +4,8 @@ const mysql = require("mysql2/promise");
 
 const dataFolderPath = "./data/";
 
-const githubUserName = "anuradharoy";
-const githubRepoName = "question-bank";
+const githubUserName = "anuradha-roy";
+const githubRepoName = "NITA-question-bank";
 
 
 const DepartmentTableDATA = [];
@@ -112,7 +112,7 @@ function addQuestionPaperDetailsFromPath(paperPath) {
 // util functions
 function createUrlFromPath(paperPath) {
     const url = paperPath.replace(/\\/g, "/");
-    return githubUserName+"/"+ githubRepoName +"/main/" + url;
+    return "raw.githubusercontent.com/"+githubUserName+"/"+ githubRepoName +"/main/" + url;
 }
 
 function capitalizeWords(str) {
