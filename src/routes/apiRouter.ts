@@ -1,5 +1,6 @@
 import express, { type Request, type Response } from "express";
 import controllers from "../controllers/controller";
+import openaiController from "../controllers/openai";
 
 const apiRoute = express.Router();
 
@@ -80,5 +81,21 @@ apiRoute.route("/questions/:course_code")
         }
     });
 
+apiRoute.route("/suggestions/:course_code")
+    .get((req: Request, res: Response) => {
+        const courseCode = req.params.course_code;
+        try {
+            openaiController.getSuggestions(courseCode).then((result: any) => {
+                if (result === null) {
+                    res.status(404).send("No suggestions found with the specified Course Code.");
+                    return;
+                }
+                console.log(result.content);
+                res.status(200).send(result.content);
+            });
+        } catch (error) {
+            res.status(500).send("Error fetching suggestions.");
+        }
+    });
 
 export { apiRoute };
