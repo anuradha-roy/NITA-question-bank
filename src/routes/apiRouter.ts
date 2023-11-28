@@ -86,12 +86,12 @@ apiRoute.route("/suggestions/:course_code")
         const courseCode = req.params.course_code;
         try {
             openaiController.getSuggestions(courseCode).then((result: any) => {
-                if (result === null) {
+                if (result === null || result === undefined) {
                     res.status(404).send("No suggestions found with the specified Course Code.");
                     return;
                 }
                 console.log(result.content);
-                res.status(200).send(result.content);
+                res.status(200).send(result);
             });
         } catch (error) {
             res.status(500).send("Error fetching suggestions.");

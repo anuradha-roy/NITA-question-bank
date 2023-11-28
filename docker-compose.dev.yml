@@ -28,5 +28,21 @@ services:
     depends_on:
       - mysql
 
+  mynodeapp:
+    image: node:latest
+    restart: always
+    ports:
+      - '3000:3000'
+    env_file:
+      - .env
+    environment:
+      - DB_HOST=mysql
+    working_dir: /app
+    volumes:
+      - ./:/app
+    command: npm start
+    depends_on:
+      - mysql
+
 volumes:
   mysqldata:

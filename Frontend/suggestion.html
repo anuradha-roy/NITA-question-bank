@@ -61,7 +61,7 @@
         }
 
         .card {
-            /* width: 300px; */
+            width: 100%;
             border: 1px solid #ddd;
             padding: 10px;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -90,6 +90,16 @@
             background-color: #008CBA;
             /* Blue */
         } 
+        #questionPapersDiv {
+            margin-top: 20px;
+            width: 100%;
+            border: 1px solid #ddd;
+            padding: 10px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            background-color: #fff;
+            border-radius: 5px;
+            text-overflow: ellipsis;
+        }
     </style>
 </head>
 
@@ -148,17 +158,18 @@
         //     console.log(helloMyLOG1);
         //     updateQuestionPapersDiv(suggestionHTML, courseCode);
         // }
-        suggestionButton.addEventListener('click', () => {
-        const course = $("#course").val();
-        const url = `${HOST_URL}/api/suggestions/${course}`;
-        window.location.href = url;
+        suggestionButton.addEventListener('click', async () => {
+        const courseCode = $("#course").val();
+        const apiUrl = `${HOST_URL}/api/suggestions/${courseCode}`;
+        const suggestion = await fetchData(apiUrl);
+        console.log(suggestion.content);
+        updateQuestionPapersDiv(suggestion.content); 
     });
 
-        async function updateQuestionPapersDiv(suggestionHTML, courseCode) {
+        async function updateQuestionPapersDiv(suggestion) {
             const questionPaperDiv = $("#questionPapersDiv");
             questionPaperDiv.empty();
-            console.log(helloMyLOG2);
-            questionPaperDiv.append(suggestionHTML);
+            questionPaperDiv.append($("<pre>").text(suggestion));
         }
 
 

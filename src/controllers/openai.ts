@@ -88,9 +88,9 @@ async function getLastQuestions(courseCode: string) {
 async function getSuggestions(courseCode: string) {
     // console.log("getSuggestions called");
     const lastQuestions = await getLastQuestions(courseCode);
-    const prompt = "Analyze the previous year's question papers for [Subject/Exam] and highlight the important topics I should cover for next year Exam. Also, provide additional related topics that might be important for the upcoming exam with example questions related to those topics.\n" + lastQuestions;
+    const prompt = "Analyze the previous year's question papers for [Subject/Exam] and highlight the important topics I should cover for next year Exam. Also, provide additional related topics and questions that might be important for the upcoming exam.\n" + lastQuestions;
     console.log(prompt);
-    const resp = await getOpenAIResponse(prompt + "\nGive me your response in HTML format.");
+    const resp = await getOpenAIResponse(prompt);
     return resp;
 }
 
